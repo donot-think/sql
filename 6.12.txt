@@ -1,0 +1,38 @@
+按员工姓名的长度分组，查询每一组的员工个数，筛选员工个数>5的有哪些？
+1.查询每个长度的员工个数
+select count(*),length(last_name) 长度
+from employees
+group by length(last_name)
+2.添加筛选条件
+select count(*),length(last_name) 长度
+from employees
+group by length(last_name)
+having count(*)>5
+
+支持别名，where最好是不用别名
+
+
+案例2：查询每个部门每个工种的员工的平均工资
+select avg(salary),department_id,job_id
+from employees
+group by job_id,department_id
+
+案例三：查询各个管理者手下的最低工资，其中最低工资不能低于6000，没有管理者的员工不计算在内
+select min(salary),manager_id
+from employees
+where manager_id is not null
+group by manager_id
+having min(salary)>6000
+
+
+查询所有部门的编号，员工数量和工资平均值，并按平均工资降序
+select count(*),department_id,avg(salary)
+from employees
+GROUP BY department_id
+ORDER BY avg(salary) desc
+
+各自男女朋友关系表之间的连接
+select name,boyName from boy,beauty
+where beauty.boyfriend_id = boy.id;
+
+

@@ -1,0 +1,34 @@
+查询员工名，部门名
+select last_name,department_name
+from employees e
+inner join departments d
+on e.department_id
+ = d.department_id
+
+查询名字中包含e的员工名和工种名 （添加筛选）
+select last_name,department_name
+from employees e
+inner join departments d
+on e.department_id
+ = d.department_id
+where e.last_name like '%e%'
+
+查询部门个数>3的城市名和部门个数，（添加分组+筛选）
+select city,count(*) 部门个数
+from departments d
+inner join locations l
+on d.location_id = l.locaiont_id
+group by city
+having count(*)>3
+
+查询那个部门的部门员工个数>3的部门名和员工个数，并按个数降序（排序）
+select department_name,count(*)
+from employees e
+INNER JOIN departments d
+on e.department_id = d.department_id
+GROUP BY department_name
+having count(*)>3
+ORDER BY count(*) desc
+
+
+查询员工名，部门名，工种名，并按照部门名降序

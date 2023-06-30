@@ -1,0 +1,4 @@
+案例：查询员工名和他的上级领导名
+select 员工.employee_id,员工.last_name,领导.employee_id,领导.last_name
+from employees 员工,employees 领导
+where 员工.manager_id = 领导.employee_id

@@ -1,0 +1,6 @@
+自连接
+查询员工的名字，上级的名字
+select e.last_name,m.last_name
+from employees e
+join employees m
+on e.manager_id=m.employee_id

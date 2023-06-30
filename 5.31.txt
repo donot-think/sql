@@ -1,0 +1,22 @@
+=或<>不能用户判断null值，
+is null或is not null 可以判断null值
+
+查询奖金率为零的员工名和员工奖金率；
+select last_name，commision_pct from employees where commision is null;
+
+
+安全等于   <=>
+案例：查询工资为12000的员工信息
+select last_name,commission_pct
+from employees 
+where salary <=>12000
+安全等于的功能是判断是否等于；
+
+is null:仅仅可以判断null值，可读性较高，建议使用
+<=>:既可以判断null值，又可以判断普通的数值，可读性较低
+
+
+排序查询
+案例：查询员工信息，要求工资从高到低排序
+select * from employee order by salary desc
+asc表示升序，desc表示降序；

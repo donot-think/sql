@@ -1,0 +1,73 @@
+连接查询：又称多表查询，当查询的字段来自多个表时，就会用到连接查询
+笛卡尔乘积现象：表1有m行，表2有n行，结果=m*n行
+发生原因：没有有效的连接条件
+如何避免：添加有效的连接条件
+
+案例：查询女神名和对应的男神名
+select name,boyname
+from boys,beauty
+where beauty.boyfriend_id = boys.id;
+
+案例2：查询员工名和对应的部门名
+select last_name,department_name
+from employees,departments
+where employees.department_id=departments.department_id
+
+为表起别名
+提高语句的简洁度
+区分多个重名的。
+案例三：查询员工名，工种号，工种名
+如果为表起了别名，则查询的字段就不能使用原来的名字了
+select last_name,employees.job_id,job_title
+from employees,jobs
+where employees.`job_id`=jobs.`job_id`
+
+案例四：查询有奖金的员工名，部门名
+select last_name,department_name
+from employees,departments
+where employees.department_id = department.department_id
+and commision_pct is not null
+两表的等值连接的关键是两表中有相同的字段。
+
+
+案例五：查询 城市名中第二个字符为o的部门名和城市名
+select department_name,city
+from locations,departments
+where departments.location_id = locations.location_id
+and city like '%_o%'
+
+
+案例六：查询每个城市的部门个数
+select count(*),city
+from departments,locations
+where departments.location_id = locations.location_id
+GROUP BY city
+
+案例七：查询有奖金的每个部门名和部门的领导编号和该部门的最低工资
+select department_name,d.manager_id,min(salary)
+from departments d,employees e
+where d.department_id = e.department_id
+and commission_pct is not null
+GROUP BY department_name,manager_id
+
+案例八：查询每个工种的工种名和员工的个数，并且按照员工个数降序
+select job_title,count(*)
+from jobs j,employees e
+where e.job_id=j.job_id
+group by job_title
+ORDER BY  count(*) desc
+
+
+实现三表连接
+案例九：查询员工名，部门名和所在城市
+select last_name,department_name,city
+from employees e,departments d,locations l
+where e.department_id=d.department_id
+and d.location_id = l.location_id
+
+
+查询员工表的job_id中包含a和e的，并且a在e的前面
+select job_id
+from employees 
+where job_id like '%a%e%'
+

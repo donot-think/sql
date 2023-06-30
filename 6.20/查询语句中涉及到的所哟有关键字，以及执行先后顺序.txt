@@ -1,0 +1,9 @@
+select 查询列表
+from 表
+连接类型 join 表2
+on 连接条件
+where 筛选条件
+group by 分组列表
+having  分组后的筛选
+order by 排序列表
+limit 偏移，条目数

@@ -1,0 +1,41 @@
+方式一：delete
+语法：
+1.单表的删除
+delete from 表名 where 筛选条件
+
+2.多表的删除
+方式二：truncate
+语法：truncate table 表名；
+
+案例：删除手机号以9结尾的女神信息
+delete from beauty where phone like '%9'
+
+多表的删除
+案例：删除张无忌的女朋友的信息
+delete b
+from beauty b
+INNER JOIN boys bo 
+on b.boyfriend_id=bo.id
+where bo.boyName="张无忌"
+
+
+
+-- 案例：删除黄晓明和他女朋友的信息
+delete bo,b
+from beauty b
+INNER JOIN boys bo
+on bo.id=b.boyfriend_id
+where bo.boyName="黄晓明"
+
+
+案例：将魅力值>100的男神信息删除
+truncate table boys;
+不能加where条件，只能将某张表全部删除
+
+
+truncate和delete的差别
+1. delete可以加where条件，truncate不能加
+2.truncate删除，效率相对高一点
+3.加入要删除的表中有自增长列，如果用delete删除后，再插入数据自增长列的值从断点开始，而truncate删除后，再插入数据，自增长列的值从1开始
+4.truncate删除没有返回值，delete删除有返回值
+5.truncate删除不能回滚，delete删除可以回滚

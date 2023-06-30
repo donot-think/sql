@@ -1,0 +1,49 @@
+查询邮箱中包含e的员工信息，并先按照邮箱的字节数降序，再按照部门号升序
+
+select * from employees where email like '%e%' 
+order by length(email) desc，department_id asc;
+
+常见函数
+概念：类似java的方法，将一组逻辑语句封装再方法体中，对外暴露方法名
+好处：1.隐藏了实现细节，2.提高代码的重用性
+调用：select函数名（实参列表{from表}）
+特点：1叫什么（函数名）
+2干什么（函数功能）
+分类：1.单行函数，如concat、length、ifnull等
+2.分组函数
+功能：做统计使用，有称为统计函数。
+
+
+concat拼接字符串
+select concat (last_name,'_','frist_name') from employees as 姓名；
+
+转变字母大小写
+upper、lower
+
+案例：将姓名变大写，名变小写，然后拼接。
+select concat(upper(last_name),lower(first_name)) as 姓名 from employees
+
+注意：索引从1开始。
+
+substr
+截取从指定索引处指定字符长度的字符。
+select substr('徐翔喜欢他女神'，6) 被喜欢的女生；
+输出结果是
+被喜欢的女生（女神）
+截取从指定索引处指定字符长度的字符。
+select substr('徐翔喜欢他女神'，1，2)
+输出结果（徐翔）。
+
+
+案例：姓名中首字符大写，其它字符小写然后用—拼接，显示出来。
+select concat(upper(substr(last_name,1,1)),'_',lower(substr(last_name,2))) out_put from employees;
+
+instr 返回字串第一次出现的索引，如果找不到返回0；
+select instr('杨不悔爱上因留下'，’因留下‘）as out_put;
+
+trim除去前后指定的字母或者空格。
+select trim('a' from 'aaa张翠山aaa') as out_put
+
+lpad用指定的字符实现左填充指定长度
+select lpad('*',10,'*') as out_put;
+rpad用指定的字符实现右填充指定长度

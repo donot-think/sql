@@ -1,0 +1,11 @@
+修改张无忌的女朋友的手机号为114
+updte boys bo
+inner join beauty b on bo.id = b.boyfrind_id
+set b.phone = '114'
+where bo.boyName = '张无忌'
+
+案例：修改没有男朋友的女神的男朋友编号都为2号
+update boys bo
+left outer join beauty b on bo.id=b.boyfriend_id
+set b.boyfrind_id=2
+where bo.id is null
